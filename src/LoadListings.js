@@ -11,7 +11,9 @@ const LoadListings = (props) => {
         }
     }
     return (
-        <button onClick={updateListings}>Load More</button>
+        <div className="load-more">
+            <button onClick={updateListings}>Load More</button>
+        </div>
     )
 }
 

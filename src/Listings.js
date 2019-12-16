@@ -7,40 +7,34 @@ import LoadListings from './LoadListings';
 import './App.css';
 
 const Listings = () => {
-  const [ sortedBy, setSort ] = useState(1);
+  const [ sortedBy, setSort ] = useState([1,-1]);
   const [ listingsData, setListings] = useState(listings);
   const [ homesDisplayed , setDisplayNumber ] = useState(9);
 
-  let orderedData = [];
-
-  if (sortedBy === 1) {
-    orderedData = listings.sort((a, b) => (a.startingPrice > b.startingPrice) ? 1 : -1);
-  } else if (sortedBy === 2) {
-    orderedData = listings.sort((b, a) => (b.startingPrice > a.startingPrice) ? 1 : -1);
-  }
-
-  const homeArray = orderedData.slice(0, homesDisplayed);
+  const homeArray = listingsData.sort((a, b) => (a.startingPrice > b.startingPrice) ? sortedBy[0] : sortedBy[1]).slice(0, homesDisplayed);
   const homes = homeArray.map((home, index) => (
-    <div className="col xl4" key={index}>
-      <HomeListingCard 
-        name={home.homeName}
-        imageUrl={home.imageURL}
-        beds={home.beds}
-        baths={home.baths}
-        isMultiSection={home.isMultiSection}
-        sqft={home.sqft}
-        startingPrice={home.startingPrice}
-      />
+    <div className="card-position">
+      <div className="col xl4 l6 m6 s12" key={index}>
+        <HomeListingCard 
+          name={home.homeName}
+          imageUrl={home.imageURL}
+          beds={home.beds}
+          baths={home.baths}
+          isMultiSection={home.isMultiSection}
+          sqft={home.sqft}
+          startingPrice={home.startingPrice}
+        />
+      </div>
     </div>
   ));
 
   return (
     <div>
-      <div className="row">
+      <div className="row hide-on-med-and-down">
         <div className="listings-subheader">
           <h3 className="left available-homes">{`${listingsData.length} `}homes available</h3>
           <div className="right dropdown-container">
-            <SortBy sortedBy={sortedBy} setSort={setSort} />
+            <SortBy homesList={homeArray} setSort={setSort} />
           </div>
         </div>
       </div>
