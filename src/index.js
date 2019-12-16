@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Listings from './Listings';
+import App from './App';
 
-ReactDOM.render(<Listings />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
