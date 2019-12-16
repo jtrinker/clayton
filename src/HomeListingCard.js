@@ -16,9 +16,6 @@ const HomeListingCard = props => {
                     <div className="listing-specs"><span>{props.sqft}sq. ft {props.beds} beds {props.baths} baths {props.isMultiSection ? 'Multi Section' : ''}</span></div>
                 </div>
             </div>
-            <div className="card-action">
-                <a href="#">This is a link</a>
-            </div>
         </div>
     )
 }

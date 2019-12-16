@@ -7,10 +7,20 @@ import LoadListings from './LoadListings';
 import './App.css';
 
 const Listings = () => {
+  const [ sortedBy, setSort ] = useState(1);
   const [ listingsData, setListings] = useState(listings);
-  
-  const [ homesDisplayed , setDisplayNumber ] = useState(listingsData.slice(0, 9));
-  const homes = homesDisplayed.map((home, index) => (
+  const [ homesDisplayed , setDisplayNumber ] = useState(9);
+
+  let orderedData = [];
+
+  if (sortedBy === 1) {
+    orderedData = listings.sort((a, b) => (a.startingPrice > b.startingPrice) ? 1 : -1);
+  } else if (sortedBy === 2) {
+    orderedData = listings.sort((b, a) => (b.startingPrice > a.startingPrice) ? 1 : -1);
+  }
+
+  const homeArray = orderedData.slice(0, homesDisplayed);
+  const homes = homeArray.map((home, index) => (
     <div className="col xl4" key={index}>
       <HomeListingCard 
         name={home.homeName}
@@ -29,8 +39,8 @@ const Listings = () => {
       <div className="row">
         <div className="listings-subheader">
           <h3 className="left available-homes">{`${listingsData.length} `}homes available</h3>
-          <div className="right">
-            <SortBy />
+          <div className="right dropdown-container">
+            <SortBy sortedBy={sortedBy} setSort={setSort} />
           </div>
         </div>
       </div>
@@ -38,7 +48,12 @@ const Listings = () => {
         {homes}
       </div>
       <div className="row">
-        <LoadListings listings={listingsData} homesDisplayed={homes} setDisplayNumber={setDisplayNumber} />
+        <LoadListings
+          listings={listingsData}
+          homesList={homeArray}
+          setDisplayNumber={setDisplayNumber}
+          numberOfHomesDisplayed={homesDisplayed}
+        />
       </div>
     </div>
   )

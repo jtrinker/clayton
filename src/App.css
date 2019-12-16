@@ -17,6 +17,7 @@ body {
 }
 
 h3 {
+  margin-bottom: 7px;
   font-size: 25px;
   color: #313639;
 }
@@ -34,12 +35,31 @@ nav img {
   vertical-align: middle;
 }
 
+.dropdown-container {
+  margin-top: 20px;
+}
+
+select.sort-by {
+  left: 0px;
+  top: 0px;
+  width: 164px;
+  border: 1px solid #666;
+  text-align: right;
+}
+
+.listings-subheader label {
+  float: left;
+  margin: 12px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
 .card .card-image img {
   height: 305px;
 }
 
-.card-content {
-  padding: 0 0 0 15px;
+.card .card-content {
+  padding: 0px 0 26px 14px;
 }
 
 .listing-info {
